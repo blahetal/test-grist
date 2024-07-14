@@ -7,19 +7,13 @@
     <script src="https://cdn.jsdelivr.net/npm/xml-js@1.6.11/dist/xml-js.min.js"></script>
   </head>
   <body>
-    <pre id="readout">Waiting for data...</pre>
+    <pre id="readout" lang="xml">Waiting for data...</pre>
     <script>
       grist.ready();
-
       const options = {compact: true, ignoreComment: true, spaces: 4};
-      // const test = {a: 1, b: 2};
-      // console.log(js2xml(test, options));
-
       grist.onRecords(function(records) {
-        console.log(records);
-        const objectToExport = { root: records };
-        console.log(objectToExport);
-        const xml = js2xml(objectToExport, options);
+        const json = JSON.stringify(records);
+        const xml = json2xml(json, options);
         console.log(xml);
         document.getElementById('readout').innerHTML = xml;
       });
