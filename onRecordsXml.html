@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>onRecords</title>
+    <script src="https://docs.getgrist.com/grist-plugin-api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xml-js@1.6.11/dist/xml-js.min.js"></script>
+  </head>
+  <body>
+    <pre id="readout">Waiting for data...</pre>
+    <script>
+      grist.ready();
+
+      const options = {compact: true, ignoreComment: true, spaces: 4};
+      // const test = {a: 1, b: 2};
+      // console.log(js2xml(test, options));
+
+      grist.onRecords(function(records) {
+        const objectToExport = { root: records };
+        const xml = js2xml(objectToExport, options);
+        document.getElementById('readout').innerHTML = xml;
+      });
+    </script>
+  </body>
+</html>
