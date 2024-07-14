@@ -16,8 +16,11 @@
       // console.log(js2xml(test, options));
 
       grist.onRecords(function(records) {
+        console.log(records);
         const objectToExport = { root: records };
+        console.log(objectToExport);
         const xml = js2xml(objectToExport, options);
+        console.log(xml);
         document.getElementById('readout').innerHTML = xml;
       });
     </script>
